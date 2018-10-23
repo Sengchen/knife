@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Graphics;
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,7 +14,8 @@ import com.sun.awt.AWTUtilities;
 public class ImageFrame extends JFrame {
 	int Frame_Width = 500;
 	int Frame_Height = 500;
-	ImageIcon icon = new ImageIcon("C:\\Users\\Administrator\\Downloads\\show word\\src\\Another knife.png");
+
+	public static ImageIcon icon = new ImageIcon("C:\\Users\\Administrator\\Downloads\\show word\\src\\Another knife.png");
 
 	public ImageFrame() {
 		JLabel backLabel = new JLabel() {
@@ -33,6 +35,11 @@ public class ImageFrame extends JFrame {
 	}
 
 	public static void main(String[] args) {
+		String currentPath = ImageFrame.class.getResource("ImageFrame.class").getPath();
+		File currentFolder = new File(new File(currentPath).getParent());
+		String imageFile = currentFolder.getParent() + File.separator + "Another knife.png";
+		icon = new ImageIcon(imageFile.replace("%20", " "));
+
 		ImageFrame frame = new ImageFrame();
 		frame.setSize(500, 500);
 		frame.setVisible(true);
